@@ -51,12 +51,11 @@ def login():
     
     # CSRF Cross Site Request Forgery == Solicitud de falsificacion entre sitios
     if request.method == 'POST':
-        print(request.form['usuario'])
-        print(request.form['password'])
+
         usuario = Usuario(
             None, request.form['usuario'], request.form['password'], None)
         usuario_logeado = ModeloUsuario.login(db, usuario)
-        print(usuario_logeado)
+
         if usuario_logeado != None:
             login_user(usuario_logeado)
             flash(BIENVENIDA, 'success')

@@ -13,11 +13,10 @@ class ModeloUsuario():
                     WHERE usuario ='{0}'""".format(usuario.usuario)
             cursor.execute(sql)
             data = cursor.fetchone()
-            print(data)
+
             if data != None:
                 coincide = Usuario.verificar_password(data[2], usuario.password)
-                print(data[2], usuario.password)
-                print(coincide)
+
                 if coincide:
                     usuario_logeado = Usuario(data[0], data[1], None,None)
                     return usuario_logeado

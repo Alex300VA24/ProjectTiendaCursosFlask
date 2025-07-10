@@ -15,7 +15,7 @@ Sigue estas instrucciones paso a paso para clonar, configurar y ejecutar el proy
 
 ```bash
 git clone https://github.com/usuario/tienda-cursos-flask.git
-cd tienda-cursos-flask
+cd projectTiendaCursosFlask
 ```
 
 ---

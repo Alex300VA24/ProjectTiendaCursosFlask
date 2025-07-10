@@ -1,7 +1,7 @@
 
 # 🛒 Tienda de Cursos de Computación Online con Flask
 
-Este proyecto es una plataforma web para una **tienda de cursos online**, desarrollada en **Python** usando el microframework **Flask**. Para la interfaz se utilizan tecnologías modernas como **HTML5**, **CSS**, **JavaScript** y **Bootstrap**, proporcionando una experiencia de usuario clara y profesional.
+Este proyecto es una plataforma web para una **tienda de cursos online**, desarrollada en **Python** usando el microframework **Flask** y como base de datos Mysql. Para la interfaz se utilizan tecnologías modernas como **HTML5**, **CSS**, **JavaScript** y **Bootstrap**, proporcionando una experiencia de usuario clara y profesional.
 
 ---
 

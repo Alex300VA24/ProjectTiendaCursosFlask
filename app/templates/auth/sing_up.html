@@ -1,0 +1,44 @@
+{% extends "./base.html" %}
+
+{% block title %} Registro {% endblock%}
+
+{% block customCSS%}
+  <link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/principal.css')}}">
+
+{% endblock%}
+
+{% block body%}
+    <form class="form-signin" action="/sing_up" method="POST">
+
+        <input type="hidden" name = "csrf_token" value="{{ csrf_token() }}">
+        <img class="mb-4" src="{{url_for('static', filename='img/logo_sin.png')}}" alt="" width="230" height="220">
+        <h1 class="h3 mb-3 fw-normal">Registro</h1>
+
+        {# Crear usuario#}
+        <div class="form-floating">
+            <label for="usuario" class="visually-hidden">Usuario</label>
+            <input type="usuario" class="form-control input-narrow" id="usuario" name="usuario" placeholder="Usuario"
+            minlength="6" maxlength="20" required autofocus>
+        </div>
+        {# Crear password#}
+        <div class="form-floating">
+            <label for="password" class="visually-hidden">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+            minlength="6" required>
+        </div>
+        <br>
+        <button class="btn btn-primary w-100 py-2" type="submit">Sing Up</button>
+
+        <br><br>
+        <a href="{{ url_for('index') }}" class="btn btn-custom btn-custom-primary">Home</a>
+
+    </form>
+    
+
+  {% block customJS%} 
+    <script src="{{url_for('static', filename='js/login.js')}}">
+  {% endblock %}
+
+{% endblock %}
+

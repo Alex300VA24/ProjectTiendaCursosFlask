@@ -1,0 +1,98 @@
+:root {
+    --primary-color: #4f46e5; /* Indigo 600 */
+    --secondary-color: #facc15; /* Amber 400 */
+    --overlay-color: rgba(0, 0, 0, 0.55);
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ========================= HERO ========================= */
+.hero {
+    position: relative;
+    min-height: 100%;
+    /* Usa un color profesional en degradado y elimina el contenedor oscuro */
+    background: linear-gradient(135deg, var(--primary-color) 0%, #6366f1 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+}
+
+/* Si prefieres una imagen hero en lugar de color sólido,
+    comenta la línea anterior y descomenta la siguiente línea:
+    background: url('{{ url_for('static', filename='img/hero_courses.jpg') }}') center/cover no-repeat; */
+
+/* Overlay para mejorar contraste sobre la imagen (no afecta cuando solo hay color) */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--overlay-color);
+}
+
+.hero-content {
+    position: relative; /* sitúa el contenido por encima del overlay */
+    z-index: 1;
+    max-width: 960px;
+    padding: 1rem;
+}
+
+.hero-logo {
+    max-width: 320px;
+    width: 80%;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+.hero-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+/* ========================= BOTONES ========================= */
+.btn-custom {
+    padding: 0.75rem 2.25rem;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.btn-custom-primary {
+    background: var(--secondary-color);
+    color: #111;
+}
+
+.btn-custom-primary:hover {
+    background: #fde047; /* tono más claro */
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-custom-outline {
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+}
+
+.btn-custom-outline:hover {
+    background: #fff;
+    color: #111;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .btn-custom {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+}

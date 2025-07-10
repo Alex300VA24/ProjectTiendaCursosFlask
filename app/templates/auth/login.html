@@ -4,32 +4,29 @@
 
 {% block customCSS%}
   <link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/principal.css')}}">
 
-    {% endblock%}
+{% endblock%}
 
-{%block body%}
-
+{% block body%}
 <form class="form-signin" action="/login" method="POST"> 
-    <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg me-3">Home</a>
-    <br><br><br>
+
     <input type="hidden" name = "csrf_token" value="{{ csrf_token() }}">
-    <img class="mb-4" src="{{url_for('static', filename='img/flask.svg')}}" alt="" width="72" height="57">
+    <img class="mb-4" src="{{url_for('static', filename='img/logo_sin.png')}}" alt="" width="230" height="220">
     <h1 class="h3 mb-3 fw-normal">Inicio de Sesi&oacute;n</h1>
 
     <div class="form-floating">
       <label for="usuario" class="visually-hidden">Usuario</label>
-      <input type="usuario" class="form-control" id="usuario" name="usuario" placeholder="Usuario"
+      <input type="usuario" class="form-control" style="height: 2.8rem; max-width: 320px;" id="usuario" name="usuario" placeholder="Usuario"
        minlength="6" maxlength="20" required autofocus>
-      
     </div>
     <div class="form-floating">
       <label for="password" class="visually-hidden">Password</label>
       <input type="password" class="form-control" id="password" name="password" placeholder="Password"
        minlength="6" required>
-      
     </div>
 
-    <button class="btn btn-primary w-100 py-2" type="submit">Log in</button>
+    <button class="btn btn-primary w-100 py-2" type="submit">Login</button>
     
     {% with messages = get_flashed_messages(with_categories=True) %}
     {% if messages %}
@@ -55,9 +52,11 @@
     {% endif %}
     {% endwith %}
     <p class="mt-5 mb-3 text-body-secondary">&copy; 2024</p>
+    <br>
+    <a href="{{ url_for('index') }}" class="btn btn-custom btn-custom-primary">Home</a>
   </form>
 
   {% block customJS%} 
     <script src="{{url_for('static', filename='js/login.js')}}">
-    {% endblock%}
-{%endblock%}
+  {% endblock %}
+{% endblock %}

@@ -29,11 +29,6 @@ from .models.entities.Usuario import Usuario
 from .conts import * 
 from .emails import confirmacion_compra
 
-class SignUpForm(FlaskForm):
-    username = StringField('Usuario', validators=[InputRequired(), Length(min=6, max=15)])
-    password = PasswordField('Contraseña', validators=[InputRequired(), Length(min=6, max=80)])
-    tipousuario = SelectField('Tipo de Usuario', choices=[('1', 'Administrador'), ('2', 'Cliente')], validators=[InputRequired()])
-    submit = SubmitField('Registrarse')
 
 app = Flask(__name__)
 
@@ -42,38 +37,6 @@ csrf = CSRFProtect()
 db = MySQL(app)
 login_manager_app = LoginManager(app)
 mail = Mail()
-
-@app.route('/signup', methods=['GET', 'POST'])
-def signup():
-    form = SignUpForm()
-    if form.validate_on_submit():
-        username = form.username.data
-        password = generate_password_hash(form.password.data, method='scrypt')
-        tipousuario_id = form.tipousuario.data
-        
-        # Verificar si el usuario ya existe
-        conn = get_db_connection()
-        cursor = conn.cursor()
-        cursor.execute('SELECT * FROM usuario WHERE usuario = %s', (username,))
-        existing_user = cursor.fetchone()
-
-        if existing_user:
-            flash('El nombre de usuario ya está en uso. Por favor, elige otro.')
-            cursor.close()
-            conn.close()
-            return render_template('sign-up.html', form=form)
-
-        # Si el usuario no existe, continuar con el registro
-        cursor.execute('INSERT INTO usuario (usuario, password, tipousuario_id) VALUES (%s, %s, %s)', 
-                       (username, password, tipousuario_id))
-        conn.commit()
-        cursor.close()
-        conn.close()
-        flash('Usuario registrado exitosamente')
-        return redirect(url_for('login'))
-    
-    return render_template('sign-up.html', form=form)
-
 
 
 
@@ -88,15 +51,18 @@ def login():
     
     # CSRF Cross Site Request Forgery == Solicitud de falsificacion entre sitios
     if request.method == 'POST':
-        
+        print(request.form['usuario'])
+        print(request.form['password'])
         usuario = Usuario(
             None, request.form['usuario'], request.form['password'], None)
         usuario_logeado = ModeloUsuario.login(db, usuario)
+        print(usuario_logeado)
         if usuario_logeado != None:
             login_user(usuario_logeado)
             flash(BIENVENIDA, 'success')
-            return redirect(url_for('login2'))
+            return redirect(url_for('panel'))
         else:
+            
             flash(LOGIN_CREDENCIALES_INVALIDAS,'warning')
             return render_template('auth/login.html')
     else:
@@ -107,6 +73,27 @@ def logout():
     logout_user()
     flash(LOGOUT, 'success')
     return redirect(url_for('login'))
+
+@app.route('/sing_up', methods=['GET', 'POST'])
+def sing_up():
+    if request.method == 'POST':
+        usuario = Usuario(None, request.form['usuario'], request.form['password'], None)
+
+        resultado = ModeloUsuario.registrar(db, usuario)
+
+        if resultado == 'existe':
+            flash('El usuario ya existe, elige otro nombre.', 'warning')
+            return render_template('auth/sing_up.html')
+
+        elif resultado == 'ok':
+            flash('Usuario registrado exitosamente. Ahora puedes iniciar sesión.', 'success')
+            return redirect(url_for('login'))
+
+        else:
+            flash('Ocurrió un error en el registro.', 'danger')
+            return render_template('auth/sing_up.html')
+
+    return render_template('auth/sing_up.html')
 
 '''@app.route('/password/<password>')
 def generar_password(password):
@@ -119,9 +106,9 @@ def generar_password(password):
 def index():
     return render_template('plantilla.html')
 
-@app.route('/login2')
+@app.route('/panel')
 @login_required
-def login2():
+def panel():
     if current_user.is_authenticated:
         if current_user.tipousuario.id == 1:
             try:

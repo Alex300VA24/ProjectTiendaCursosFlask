@@ -1,7 +1,9 @@
 
 # 🛒 Tienda de Cursos de Computación Online con Flask
 
-Este proyecto es una plataforma web para una **tienda de cursos online**, desarrollada en **Python** usando el microframework **Flask** y como base de datos Mysql. Para la interfaz se utilizan tecnologías modernas como **HTML5**, **CSS**, **JavaScript** y **Bootstrap**, proporcionando una experiencia de usuario clara y profesional.
+
+Este proyecto es una plataforma web para una **tienda de cursos online**, desarrollada en **Python** usando el microframework **Flask**, para la base de datos **Mysql**. Para la interfaz se utilizan tecnologías modernas como **HTML5**, **CSS**, **JavaScript** y el framework de diseño **Bootstrap** para una experiencia de usuario clara y profesional.
+
 
 ---
 
@@ -64,7 +66,33 @@ Este valor es usado para autenticar el envío de correos.
 
 ---
 
-### 6️⃣ Definir el módulo principal de ejecución
+### 6️⃣ Crear la base de datos MySQL
+
+Debes tener instalado **MySQL** y ejecutar el archivo `tienda.sql` para crear la base de datos y sus tablas.
+
+#### Opción 1: Usando la terminal de MySQL
+
+```bash
+mysql -u tu_usuario -p < tienda.sql
+```
+
+#### Opción 2: Usando MySQL Workbench
+
+1. Abre MySQL Workbench.
+2. Conéctate a tu servidor.
+3. Abre el archivo `tienda.sql`.
+4. Ejecuta el script.
+
+#### Opción 3: Usando phpMyAdmin
+
+1. Abre phpMyAdmin en tu navegador.
+2. Selecciona "Importar".
+3. Elige el archivo `tienda.sql`.
+4. Haz clic en "Continuar".
+
+---
+
+### 7️⃣ Definir el módulo principal de ejecución
 
 En PowerShell, define el archivo principal desde donde se ejecutará la app:
 
@@ -74,7 +102,7 @@ $env:FLASK_APP = "cli.py"
 
 ---
 
-### 7️⃣ (Opcional) Activar el modo debug
+### 8️⃣ (Opcional) Activar el modo debug
 
 Para ver errores detallados durante el desarrollo:
 
@@ -84,7 +112,7 @@ $env:FLASK_DEBUG = 1
 
 ---
 
-### 8️⃣ Configurar destinatarios del correo
+### 9️⃣ Configurar destinatarios del correo
 
 En el archivo `mails.py`, puedes especificar a qué correo se enviarán los mensajes:
 
@@ -94,7 +122,7 @@ recipients = ['correo_destino@ejemplo.com']
 
 ---
 
-### 9️⃣ Configurar el correo de envío
+### 🔟 Configurar el correo de envío
 
 En `cli.py` o en el archivo `configuracion.py`, establece el correo desde el cual se enviarán los mensajes:
 

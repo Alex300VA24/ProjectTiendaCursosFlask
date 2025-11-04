@@ -3,13 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmacion Compra</title>
+    <title>Confirmación de Compra - Computing Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 600px;
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 3rem;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: scaleIn 0.5s ease-out;
+        }
+        
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .success-icon svg {
+            width: 40px;
+            height: 40px;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #f8fafc, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        h2 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        
+        .course-info {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+        
+        .course-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #818cf8;
+            margin-bottom: 0.5rem;
+        }
+        
+        .user-name {
+            color: #6366f1;
+            font-weight: 600;
+        }
+    </style>
 </head>
 <body>
-    <h1>Confirmacion de Curso comprado</h1>
-    <h2>{{usuario.usuario}} es un gusto comunicarle que el Curso {{curso.titulo}} a sido comprado con éxito</h2>
-    <!--{% set url = 'img/portadas/' + curso.id|string + '.jpg' %}
-    <img class="card-img-top" src="{{ url_for('static', filename='https://www.imprentaonline.net/blog/prompt-imagenes-ia/') }}" height="320" alt="{{ curso.titulo }}">
--->
-    </body>
+    <div class="container">
+        <div class="success-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+        </div>
+        
+        <h1>¡Compra Confirmada!</h1>
+        
+        <h2>
+            Hola <span class="user-name">{{usuario.usuario}}</span>, es un gusto comunicarte que tu compra ha sido procesada exitosamente.
+        </h2>
+        
+        <div class="course-info">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1rem;">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            <div class="course-title">{{curso.titulo}}</div>
+            <p style="color: #94a3b8; font-size: 0.9rem; margin: 0;">Curso adquirido con éxito</p>
+        </div>
+    </div>
+</body>
 </html>

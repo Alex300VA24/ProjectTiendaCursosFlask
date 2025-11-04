@@ -1,0 +1,175 @@
+/* ============================================
+   LANDING PAGE - PÁGINA DE BIENVENIDA
+   ============================================ */
+
+.landing-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto de fondo animado */
+.landing-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.landing-container img {
+    width: 280px;
+    height: auto;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 20px 40px rgba(99, 102, 241, 0.3));
+    animation: float 3s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.landing-container h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #f8fafc, #818cf8, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 2.5rem;
+    line-height: 1.2;
+    max-width: 800px;
+    animation: fadeInUp 0.8s ease-out;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   BOTONES PERSONALIZADOS LANDING
+   ============================================ */
+.btn-custom {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 1rem 2.5rem;
+    border-radius: 16px;
+    border: none;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    min-width: 220px;
+}
+
+.btn-custom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.btn-custom:hover::before {
+    opacity: 1;
+}
+
+.btn-custom-primary {
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    color: white;
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+}
+
+.btn-custom-primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(99, 102, 241, 0.5);
+    color: white;
+}
+
+.btn-custom-primary:active {
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   RESPONSIVE LANDING
+   ============================================ */
+@media (max-width: 768px) {
+    .landing-container img {
+        width: 200px;
+    }
+    
+    .landing-container h1 {
+        font-size: 2rem;
+    }
+    
+    .btn-custom {
+        font-size: 1rem;
+        padding: 0.875rem 2rem;
+        min-width: 180px;
+    }
+    
+    .d-flex.gap-4 {
+        gap: 1rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .landing-container img {
+        width: 160px;
+    }
+    
+    .landing-container h1 {
+        font-size: 1.5rem;
+    }
+    
+    .btn-custom {
+        width: 100%;
+        max-width: 300px;
+    }
+}
